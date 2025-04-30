@@ -21,8 +21,8 @@
     <source path="source" />
 
     <!-- Assets -->
-    <assets path=".SRC ENGINE/assets" rename="assets" />
-    <assets path=".SRC ENGINE/mods" rename="mods" />
+    <assets path="assets" rename="assets" />
+    <assets path="mods" rename="mods" />
 
     <!-- Fonts, scripts, etc. -->
     <assets path="assets/fonts" rename="fonts" />
