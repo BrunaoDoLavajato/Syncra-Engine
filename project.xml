@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+    <meta title="Syncra Engine" package="syncra.engine" version="0.1.0" company="YuriandMoichi" />
+    <app main="Main" file="SyncraEngine" />
+
+    <!-- Window configuration -->
+    <window width="1280" height="720" fps="60" background="#000000" />
+
+    <!-- Platform targets -->
+    <target name="android" if="android" />
+    <target name="windows" if="windows" />
+    <target name="html5" if="html5" />
+
+    <!-- Icon images -->
+    <icon path="art/icon16.png" size="16" />
+    <icon path="art/icon32.png" size="32" />
+    <icon path="art/icon64.png" size="64" />
+    <icon path="art/iconOG.png" size="600" />
+
+    <!-- Source code -->
+    <source path="source" />
+
+    <!-- Assets -->
+    <assets path=".SRC ENGINE/assets" rename="assets" />
+    <assets path=".SRC ENGINE/mods" rename="mods" />
+
+    <!-- Fonts, scripts, etc. -->
+    <assets path="assets/fonts" rename="fonts" />
+    <assets path="assets/songs" rename="songs" />
+    <assets path="assets/images" rename="images" />
+
+    <!-- Dependencies -->
+    <haxelib name="flixel" />
+    <haxelib name="openfl" />
+    <haxelib name="lime" />
+    <haxelib name="flixel-addons" />
+    <haxelib name="flixel-ui" />
+    <haxelib name="hscript" />
+
+    <!-- Android permissions -->
+    <android permission="android.permission.READ_EXTERNAL_STORAGE" />
+    <android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+</project>
