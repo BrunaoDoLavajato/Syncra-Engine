@@ -42,6 +42,10 @@ jobs:
           echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> $GITHUB_ENV
           echo "$GITHUB_WORKSPACE/android-sdk/platform-tools" >> $GITHUB_PATH
 
+      - name: Create Temporary .SRC ENGINE Folder
+        run: |
+          mkdir -p ".SRC ENGINE/assets"
+
       - name: Build APK
         run: |
           haxelib run lime build android -release
