@@ -27,7 +27,7 @@ jobs:
           haxelib run lime setup
           haxelib run openfl setup
 
-      - name: Install Android SDK + NDK
+      - name: Install Android SDK and NDK
         run: |
           sudo apt-get update
           sudo apt-get install -y openjdk-11-jdk unzip wget
@@ -35,12 +35,19 @@ jobs:
           unzip sdk.zip -d android-sdk
           yes | android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=android-sdk "platform-tools" "platforms;android-33" "build-tools;33.0.2" "ndk;25.2.9519653"
 
-      - name: Set Android Environment
+      - name: Set Environment Variables
         run: |
           echo "ANDROID_SDK_ROOT=$GITHUB_WORKSPACE/android-sdk" >> $GITHUB_ENV
           echo "ANDROID_NDK_ROOT=$GITHUB_WORKSPACE/android-sdk/ndk/25.2.9519653" >> $GITHUB_ENV
           echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> $GITHUB_ENV
           echo "$GITHUB_WORKSPACE/android-sdk/platform-tools" >> $GITHUB_PATH
+
+      - name: Configure Lime for Android
+        run: |
+          haxelib run lime config ANDROID_SDK $ANDROID_SDK_ROOT
+          haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_ROOT
+          haxelib run lime config JAVA_HOME $JAVA_HOME
+          haxelib run lime config ANDROID_SETUP true
 
       - name: Create Temporary .SRC ENGINE Folder
         run: |
