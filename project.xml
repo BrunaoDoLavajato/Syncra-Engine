@@ -23,12 +23,7 @@
     <!-- Assets -->
     <assets path="assets" rename="assets" />
     <assets path="mods" rename="mods" />
-
-    <!-- Fonts, scripts, etc. -->
-    <assets path="assets/fonts" rename="fonts" />
-    <assets path="assets/songs" rename="songs" />
-    <assets path="assets/images" rename="images" />
-
+    
     <!-- Dependencies -->
     <haxelib name="flixel" />
     <haxelib name="openfl" />
