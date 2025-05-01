@@ -24,14 +24,6 @@
     <assets path="assets" rename="assets" />
     <assets path="mods" rename="mods" />
     
-    <!-- Dependencies -->
-    <haxelib name="flixel" />
-    <haxelib name="openfl" />
-    <haxelib name="lime" />
-    <haxelib name="flixel-addons" />
-    <haxelib name="flixel-ui" />
-    <haxelib name="hscript" />
-
     <!-- Android permissions -->
     <android permission="android.permission.READ_EXTERNAL_STORAGE" />
     <android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
