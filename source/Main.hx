@@ -1,10 +1,12 @@
 package;
 
+import openfl.display.Sprite;
 import flixel.FlxGame;
-import states.MainMenuState
+import states.MainMenuState;
 
-class Main extends FlxGame {
+class Main extends Sprite {
     public function new() {
-        super(1280, 720, MainMenuState); // replace with your initial state
+        super();
+        addChild(new FlxGame(1280, 720, MainMenuState, 1, 60, 60, true));
     }
 }
