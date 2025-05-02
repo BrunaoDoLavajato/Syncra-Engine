@@ -1,7 +1,7 @@
 package utils;
 
 import flixel.FlxSprite;
-import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxTypedGroup;
 import flixel.util.FlxColor;
 
 class FlxGridOverlay {
@@ -13,8 +13,7 @@ class FlxGridOverlay {
         verticalLines:Bool = true,
         ?color1:FlxColor,
         ?color2:FlxColor
-    ):FlxGroup 
-    var group = new FlxGroup();{
+    ):FlxTypedGroup<FlxSprite> {
         if (color1 == null) color1 = FlxColor.GRAY;
         if (color2 == null) color2 = FlxColor.fromRGB(64, 64, 64);
 
@@ -30,7 +29,7 @@ class FlxGridOverlay {
                 group.add(block);
             }
         }
-    }
+
         return group;
     }
 }
