@@ -5,9 +5,15 @@ import sys.FileSystem;
 import Date;
 
 class Logger {
-    private static var logFilePath:String = ".SRC ENGINE/logs/log.txt";
+    private static var logDir:String = ".SRC ENGINE/logs";
+    private static var logFilePath:String = '$logDir/log.txt';
 
     public static function log(message:String):Void {
+        // Ensure the logs directory exists
+        if (!FileSystem.exists(logDir)) {
+            FileSystem.createDirectory(logDir);
+        }
+
         var timestamp = Date.now().toString();
         var logMessage = '[$timestamp] $message\n';
         File.append(logFilePath, logMessage);
