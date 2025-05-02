@@ -19,8 +19,10 @@ class ModsMenuState extends FlxState {
 
         // Checkerboard overlay
         var checkerboard = FlxGridOverlay.create(40, 40, FlxG.width, FlxG.height);
-checkerboard.setAll("alpha", 0.2);
-add(checkerboard);
+        for (sprite in checkerboard.members) {
+    if (sprite != null) sprite.alpha = 0.2;
+        }
+        add(checkerboard);
         
 
         // Gray background behind icon
