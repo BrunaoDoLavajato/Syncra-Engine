@@ -6,6 +6,7 @@ import flixel.group.FlxGroup;
 import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
+import states.ModsMenuStateState;
 
 class MainMenuState extends FlxState {
     var bg:FlxSprite;
