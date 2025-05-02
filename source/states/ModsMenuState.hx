@@ -8,7 +8,7 @@ import openfl.utils.Assets;
 import haxe.Json;
 import sys.io.File;
 
-class ModManagerState extends FlxState {
+class ModsMenuState extends FlxState {
     override public function create():Void {
         super.create();
 
