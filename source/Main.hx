@@ -1,14 +1,10 @@
 package;
 
 import flixel.FlxGame;
-import states.InitState;
+import states.MainMenuState
 
 class Main extends FlxGame {
     public function new() {
-        super(1280, 720, InitState); // Set resolution + initial state
-    }
-
-    public static function main():Void {
-        new Main();
+        super(1280, 720, MainMenuState); // replace with your initial state
     }
 }
