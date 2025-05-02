@@ -84,7 +84,9 @@ class ModsMenuState extends FlxState {
         }
 
         // Add mod to list
-        modList["Mod 1"] = modName;
+        var modList:Dynamic = {};
+Reflect.setField(modList, "Mod 1", modName);
+        
 
         File.saveContent(modListPath, Json.stringify(modList, null, "  "));
     }
