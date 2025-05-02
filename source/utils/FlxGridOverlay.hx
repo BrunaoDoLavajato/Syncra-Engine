@@ -3,7 +3,6 @@ package utils;
 import flixel.FlxSprite;
 import flixel.group.FlxTypedGroup;
 import flixel.util.FlxColor;
-import flixel.FlxG;
 
 class FlxGridOverlay {
     public static function create(
@@ -12,11 +11,13 @@ class FlxGridOverlay {
         width:Int,
         height:Int,
         verticalLines:Bool = true,
-        color1:FlxColor = FlxColor.GRAY,
-        color2:FlxColor = FlxColor.DARK_GRAY
+        ?color1:FlxColor,
+        ?color2:FlxColor
     ):FlxTypedGroup<FlxSprite> {
-        var group = new FlxTypedGroup<FlxSprite>();
+        if (color1 == null) color1 = FlxColor.GRAY;
+        if (color2 == null) color2 = FlxColor.fromRGB(64, 64, 64);
 
+        var group = new FlxTypedGroup<FlxSprite>();
         var cols = Math.ceil(width / cellWidth);
         var rows = Math.ceil(height / cellHeight);
 
