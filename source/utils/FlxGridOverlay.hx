@@ -30,7 +30,7 @@ class FlxGridOverlay {
                 group.add(block);
             }
         }
-
+    }
         return group;
     }
 }
