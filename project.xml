@@ -8,6 +8,10 @@
 
     <!-- Platform targets -->
     <target name="android" if="android" />
+    <haxelib name="lime" />
+    <app main="Main" file="Syncra" path="bin" />
+    <template path="android/template" if="android" />
+    
     <target name="windows" if="windows" />
     <target name="html5" if="html5" />
 
