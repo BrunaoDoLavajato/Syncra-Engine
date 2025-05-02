@@ -1,5 +1,6 @@
 package;
 
+import states.InitState;
 import flixel.FlxGame;
 
 class Main extends FlxGame {
