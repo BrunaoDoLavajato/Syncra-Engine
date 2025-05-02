@@ -1,0 +1,7 @@
+-cp src
+-main Main
+-D android
+-D HXCPP_ARMV7
+-D no-compilation
+-D static_link
+--no-output
