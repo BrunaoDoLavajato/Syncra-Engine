@@ -28,17 +28,17 @@ jobs:
           haxelib run openfl setup
 
       - name: Install HaxeFlixel
-       run: |
-         haxelib install flixel
-         haxelib install flixel-addons
-         haxelib install flixel-ui
-         haxelib install openfl
-         haxelib install lime
-         haxelib run lime setup
-         haxelib run lime setup android
-         haxelib dev flixel `haxelib path flixel | head -1`
-    
-     - name: Install Android SDK and NDK
+        run: |
+          haxelib install flixel
+          haxelib install flixel-addons
+          haxelib install flixel-ui
+          haxelib install openfl
+          haxelib install lime
+          haxelib run lime setup
+          haxelib run lime setup android
+          haxelib dev flixel `haxelib path flixel | head -1`
+
+      - name: Install Android SDK and NDK
         run: |
           sudo apt-get update
           sudo apt-get install -y openjdk-11-jdk unzip wget
