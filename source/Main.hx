@@ -1,16 +1,10 @@
 package;
 
-class Main {
-	public static function main() {
-		trace("Yuri is fucking twelve pussys rn");
-		
-		Engine.init();
+import flixel.FlxGame;
+import states.InitState;
 
-		StateManager.changeState("InitState");
-
-		while (true) {
-			StateManager.update();
-			Sys.sleep(0.016); // Roughly 60 FPS
-		}
+class Main extends FlxGame {
+	public function new() {
+		super(1280, 720, InitState); // Set your preferred resolution and initial state
 	}
 }
