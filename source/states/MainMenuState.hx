@@ -58,7 +58,7 @@ class MainMenuState extends FlxState {
         }
 
         if (FlxG.keys.justPressed.M) {
-            FlxG.switchState(new ModManagerState());
+            FlxG.switchState(new ModsMenuState());
         }
     }
 
@@ -71,13 +71,13 @@ class MainMenuState extends FlxState {
     function selectOption():Void {
         switch (curSelected) {
             case 0:
-                FlxG.switchState(new StoryMenuState());
+                FlxG.switchState(new MainMenuState());
             case 1:
-                FlxG.switchState(new FreeplayState());
+                FlxG.switchState(new MainMenuState());
             case 2:
-                FlxG.switchState(new CreditsState());
+                FlxG.switchState(new MainMenuState());
             case 3:
-                FlxG.switchState(new OptionsState());
+                FlxG.switchState(new MainMenuState());
         }
     }
 }
