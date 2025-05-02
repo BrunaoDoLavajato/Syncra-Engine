@@ -1,22 +1,15 @@
-package utils;
-
 import sys.io.File;
-import sys.FileSystem;
-import Date;
+import sys.io.FileOutput;
 
 class Logger {
-    private static var logDir:String = ".SRC ENGINE/logs";
-    private static var logFilePath:String = '$logDir/log.txt';
+    private static var logFilePath:String = ".SRC ENGINE/logs/log.txt";
 
     public static function log(message:String):Void {
-        // Ensure the logs directory exists
-        if (!FileSystem.exists(logDir)) {
-            FileSystem.createDirectory(logDir);
-        }
-
         var timestamp = Date.now().toString();
         var logMessage = '[$timestamp] $message\n';
-        File.append(logFilePath, logMessage);
+        var output:FileOutput = File.append(logFilePath, false); // false = text mode
+        output.writeString(logMessage);
+        output.close();
     }
 
     public static function error(message:String):Void {
