@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
     <meta title="Syncra Engine" package="syncra.engine" version="0.1.0" company="YuriandMoichi" />
-    <app main="Main" file="Syncra" path="bin" />
+    <app main="Main" file="SyncraEngine" />
     
 
     <!-- Window configuration -->
