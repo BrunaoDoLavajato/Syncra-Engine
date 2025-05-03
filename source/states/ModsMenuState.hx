@@ -4,11 +4,10 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxTypedGroup;
+import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import flixel.util.FlxTextAlign;
 import flixel.graphics.frames.FlxAtlasFrames;
-import openfl.utils.Assets;
 import haxe.Json;
 import sys.io.File;
 import sys.FileSystem;
@@ -23,9 +22,10 @@ class ModsMenuState extends FlxState {
         add(bg);
 
         // Checkerboard overlay
-        var checkerboard:FlxTypedGroup<FlxSprite> = FlxGridOverlay.create(40, 40, FlxG.width, FlxG.height);
+        var checkerboard:FlxGroup = FlxGridOverlay.create(40, 40, FlxG.width, FlxG.height);
         for (sprite in checkerboard.members) {
-            if (sprite != null) cast(sprite, FlxSprite).alpha = 0.2;
+            var casted:FlxSprite = cast sprite;
+            if (casted != null) casted.alpha = 0.2;
         }
         add(checkerboard);
 
@@ -35,7 +35,7 @@ class ModsMenuState extends FlxState {
         add(grayBg);
 
         // Load Mod Info
-        var modFolder = "mods/YourModFolder/"; // TODO: Later make this dynamic
+        var modFolder = "mods/YourModFolder/";
         var infoPath = modFolder + "Mod-Info.json";
 
         if (!FileSystem.exists(infoPath)) {
@@ -46,13 +46,13 @@ class ModsMenuState extends FlxState {
         var infoRaw = File.getContent(infoPath);
         var modInfo:Dynamic = Json.parse(infoRaw);
 
-        // Load Mod Icon
+        // Mod Icon
         var modIcon = new FlxSprite(110, 110).loadGraphic(modFolder + "Mod-Icon.png");
         modIcon.setGraphicSize(150, 150);
         modIcon.updateHitbox();
         add(modIcon);
 
-        // Load and display Mod Name using alphabet sprites
+        // Mod Name (using alphabet.png)
         var nameText = new FlxTypedGroup<FlxSprite>();
         var name:String = Std.string(modInfo.name);
         var xStart = 300;
@@ -69,12 +69,12 @@ class ModsMenuState extends FlxState {
         }
         add(nameText);
 
-        // Description text
+        // Description
         var descriptionText = new FlxText(300, 170, 400, Std.string(modInfo.description));
-        descriptionText.setFormat("assets/fonts/vcr.ttf", 16, FlxColor.WHITE, FlxTextAlign.LEFT);
+        descriptionText.setFormat("assets/fonts/vcr.ttf", 16, FlxColor.WHITE);
         add(descriptionText);
 
-        // Save to modList
+        // Save to mod list
         updateModList(name);
     }
 
