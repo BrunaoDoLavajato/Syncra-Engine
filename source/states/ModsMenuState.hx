@@ -1,12 +1,17 @@
 package states;
 
-import flixel.*;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.FlxState;
+import flixel.group.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.util.FlxTextAlign;
 import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.Assets;
 import haxe.Json;
 import sys.io.File;
+import sys.FileSystem;
 import utils.FlxGridOverlay;
 
 class ModsMenuState extends FlxState {
@@ -18,12 +23,11 @@ class ModsMenuState extends FlxState {
         add(bg);
 
         // Checkerboard overlay
-        var checkerboard = FlxGridOverlay.create(40, 40, FlxG.width, FlxG.height);
+        var checkerboard:FlxTypedGroup<FlxSprite> = FlxGridOverlay.create(40, 40, FlxG.width, FlxG.height);
         for (sprite in checkerboard.members) {
-    if (sprite != null) sprite.alpha = 0.2;
+            if (sprite != null) cast(sprite, FlxSprite).alpha = 0.2;
         }
         add(checkerboard);
-        
 
         // Gray background behind icon
         var grayBg = new FlxSprite(100, 100);
@@ -31,7 +35,7 @@ class ModsMenuState extends FlxState {
         add(grayBg);
 
         // Load Mod Info
-        var modFolder = "mods/YourModFolder/"; // You may iterate mods later
+        var modFolder = "mods/YourModFolder/"; // TODO: Later make this dynamic
         var infoPath = modFolder + "Mod-Info.json";
 
         if (!FileSystem.exists(infoPath)) {
@@ -48,13 +52,14 @@ class ModsMenuState extends FlxState {
         modIcon.updateHitbox();
         add(modIcon);
 
-        // Load and display Mod Name (with alphabet.png)
+        // Load and display Mod Name using alphabet sprites
         var nameText = new FlxTypedGroup<FlxSprite>();
         var name:String = Std.string(modInfo.name);
         var xStart = 300;
         for (i in 0...name.length) {
             var letter = name.charAt(i).toLowerCase();
             if (letter == " ") continue;
+
             var charSprite = new FlxSprite(xStart + i * 30);
             charSprite.frames = FlxAtlasFrames.fromSparrow("assets/images/alphabet.png", "assets/images/alphabet.xml");
             charSprite.animation.addByPrefix("idle", letter, 24, false);
@@ -64,13 +69,13 @@ class ModsMenuState extends FlxState {
         }
         add(nameText);
 
-        // Load and display description
+        // Description text
         var descriptionText = new FlxText(300, 170, 400, Std.string(modInfo.description));
         descriptionText.setFormat("assets/fonts/vcr.ttf", 16, FlxColor.WHITE, FlxTextAlign.LEFT);
         add(descriptionText);
 
-        // Update modList.json based on platform
-        updateModList(Std.string(modInfo.name));
+        // Save to modList
+        updateModList(name);
     }
 
     function updateModList(modName:String):Void {
@@ -86,11 +91,7 @@ class ModsMenuState extends FlxState {
             }
         }
 
-        // Add mod to list
-        var modList:Dynamic = {};
-Reflect.setField(modList, "Mod 1", modName);
-        
-
+        Reflect.setField(modList, "Mod 1", modName);
         File.saveContent(modListPath, Json.stringify(modList, null, "  "));
     }
 }
