@@ -64,11 +64,7 @@ jobs:
       - name: Clean build artifacts
         run: |
           rm -rf bin/
-
-      - name: Build HTML5 (Optional)
-        run: |
-          haxelib run lime test html5
-
+          
       - name: Build APK
         run: |
           haxelib run lime build android -release
