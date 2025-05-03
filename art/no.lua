@@ -1,2 +1,0 @@
-function onSongEnd()
-  os.exit()
