@@ -2,7 +2,9 @@ name: Build APK
 
 on:
   push:
-    branches: [ "main" ]
+    paths-ignore:
+    - '.gitignore'
+    - 'ApplicationMain.hx'
   pull_request:
     branches: [ "main" ]
 
