@@ -55,7 +55,7 @@ class ModsMenuState extends FlxState {
 
         // Display Description
         var descriptionText = new FlxText(300, 160, 400, Std.string(modInfo.description));
-        descriptionText.setFormat("assets/fonts/vcr.ttf", 16, FlxColor.LTGRAY);
+        descriptionText.setFormat("assets/fonts/vcr.ttf", 16, 0xFFCCCCCC);
         add(descriptionText);
 
         // Update mod list based on platform
