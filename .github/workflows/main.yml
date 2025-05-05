@@ -2,9 +2,9 @@ name: Build APK
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -27,22 +27,15 @@ jobs:
           haxelib install flixel-addons
           haxelib install flixel-ui
           haxelib run lime setup
-          haxelib run openfl setup
+          haxelib run lime setup android
 
-      - name: Verify Haxelib Installations
-        run: haxelib list
-
-      - name: Set up Android SDK and NDK
+      - name: Set Android SDK + JDK
         run: |
           sudo apt-get update
           sudo apt-get install -y openjdk-11-jdk unzip wget
           wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O sdk.zip
           unzip sdk.zip -d android-sdk
-          yes | android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=android-sdk \
-            "platform-tools" \
-            "platforms;android-33" \
-            "build-tools;33.0.2" \
-            "ndk;25.2.9519653"
+          yes | android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=android-sdk "platform-tools" "platforms;android-33" "build-tools;33.0.2" "ndk;25.2.9519653"
 
       - name: Set Environment Variables
         run: |
@@ -58,14 +51,11 @@ jobs:
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
 
-      - name: Clean build artifacts
-        run: |
-          rm -rf bin/
-          rm -rf export/
+      - name: Clean build artifacts (remove ApplicationMain.hx)
+        run: rm -rf bin/
 
-      - name: Build APK
-        run: |
-          haxelib run lime build android -release
+      - name: Build Android APK
+        run: haxelib run lime build android -release
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
