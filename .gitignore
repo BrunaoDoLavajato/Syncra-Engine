@@ -1,5 +1,5 @@
 # Ignore HaxeFlixel build output
-bin/
+bin/android/haxe
 export/
 Export/
 .haxe/
@@ -19,12 +19,3 @@ Export/
 *.hxproj
 ApplicationMain.hx
 *.log
-
-# VSCode or IDE configs (optional)
-.vscode/
-.idea/
-
-# OS junk
-.DS_Store
-Thumbs.db
-
